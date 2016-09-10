@@ -1,0 +1,28 @@
+---
+title: "DATA607-Week2Assignment"
+author: "Christine Yuan"
+date: "September 9, 2016"
+output: html_document
+---
+
+I imported the Movie Ratings table from the csv file.
+```{r setup, include=FALSE}
+##Read CSV into R - note that my csv file was semi-colon delimited
+Movie_Reviews <- read.csv(file="C:/Users/Public/movieratings.csv", header=TRUE, sep=";")
+
+#This is the code I had to run since it's the only folder mySQL Workbench could write to:
+#Movie_Reviews <- read.csv(file="C:/ProgramData/MySQL/MySQL Server 5.7/Uploads/movieratings.csv", header=TRUE, sep=";")
+
+Movie_Reviews
+names(Movie_Reviews)
+```
+
+And was able to find the average movie ratings for each of the six movies.
+(by conferring this deck for grouping data: http://www.slideshare.net/jeffreybreen/grouping-summarizing-data-in-r)
+
+These ratings were determined from a survey of 30 observations from 5 inidividuals who each rated 6 movies on a scale of 1-5.
+
+```{r table, include=TRUE}
+avgratings <- tapply(Movie_Reviews$Rating, Movie_Reviews$MovieName, FUN=mean)
+avgratings
+```
